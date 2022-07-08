@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   static const String src1 = 'https://boxdev.ru/testThing1.glb';
+  ModelViewController rotateController = new ModelViewController();
 
   @override
   void initState() {
@@ -28,16 +29,27 @@ class _MyAppState extends State<MyApp> {
           title: const Text('AR app'),
         ),
         body: Column(
-          children: const [
+          children:  [
             SizedBox(
               height: 400,
               child: ModelViewer(
+                backgroundColor: Colors.white,
+                modelViewController:rotateController,
                 src: src1,
                 autoRotate: false,
                 rotationPerSecond: "50deg",
                 autoRotateDelay: 500,
-                cameraControls: true,
+                cameraControls: false,
                 openCache: false,
+                onError: (){
+                  debugPrint('error load 3d model');
+                },
+                // src: src1,
+                // autoRotate: false,
+                // rotationPerSecond: "50deg",
+                // autoRotateDelay: 500,
+                // cameraControls: true,
+                // openCache: false,
               ),
             )
           ],
