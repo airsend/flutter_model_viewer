@@ -34,6 +34,7 @@ class ModelViewer extends StatefulWidget {
       this.onError,
       this.loadingView,
       this.rotationPerSecond,
+        this.modelViewController,
       this.openCache})
       : super(key: key);
 
@@ -102,6 +103,8 @@ class ModelViewer extends StatefulWidget {
   //WebView加载失败回调
   final VoidCallback? onError;
 
+  final ModelViewController? modelViewController;
+
   @override
   State<ModelViewer> createState() => _ModelViewerState();
 }
@@ -142,6 +145,7 @@ class _ModelViewerState extends State<ModelViewer> {
           initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
           onWebViewCreated: (final WebViewController webViewController) async {
             _controller.complete(webViewController);
+            widget.modelViewController?.setWebview(webViewController);
             final host = _proxy!.address.address;
             final port = _proxy!.port;
             final url = "http://$host:$port/";
@@ -317,5 +321,24 @@ class _ModelViewerState extends State<ModelViewer> {
     } else {
       return "file://" + fileInfo.file.path;
     }
+  }
+}
+class ModelViewController {
+  late WebViewController webViewController;
+
+  ModelViewController({WebViewController? webViewController});
+
+  Future<void> setWebview(WebViewController webViewController) async {
+    this.webViewController = webViewController;
+  }
+
+  //缩放模型
+  Future<void> zoomModel(double value) async {
+    await webViewController.runJavascript("modelViewer.zoom($value)");
+  }
+
+  //切换模型
+  Future<void> toggleModel(String modelSrc) async {
+    webViewController.runJavascript('modelViewer.setAttribute("src","$modelSrc" )');
   }
 }

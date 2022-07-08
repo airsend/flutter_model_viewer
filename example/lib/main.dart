@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static const String src1 = 'https://superd.oss-cn-beijing.aliyuncs.com/pub_upload/2022-03-04/ciawb49ie51dq3f0ho.glb';
+  static const String src1 = 'https://boxdev.ru/testThing1.glb';
 
   @override
   void initState() {
@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('AR app'),
         ),
         body: Column(
           children: const [
@@ -33,11 +33,11 @@ class _MyAppState extends State<MyApp> {
               height: 400,
               child: ModelViewer(
                 src: src1,
-                autoRotate: true,
+                autoRotate: false,
                 rotationPerSecond: "50deg",
                 autoRotateDelay: 500,
                 cameraControls: true,
-                openCache: true,
+                openCache: false,
               ),
             )
           ],
