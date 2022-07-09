@@ -140,6 +140,7 @@ class _ModelViewerState extends State<ModelViewer> {
     return Stack(
       children: [
         WebView(
+          backgroundColor: Colors.white,
           initialUrl: null,
           javascriptMode: JavascriptMode.unrestricted,
           initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
