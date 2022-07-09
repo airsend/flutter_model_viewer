@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static const String src1 = 'https://boxdev.ru/testThing1.glb';
+  static const String src1 = 'https://firebasestorage.googleapis.com/v0/b/ar-app-eb45e.appspot.com/o/products%2F-N4Ooph2Nt6aCPEt4NQE%2FtestThing1.glb?alt=media&token=64c507e9-7903-48fc-8ee6-727a7285f55c';
   ModelViewController rotateController = new ModelViewController();
 
   @override
